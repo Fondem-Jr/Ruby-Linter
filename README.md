@@ -52,10 +52,33 @@ This project is tested with Rspec(domain-specific language (DSL)) testing tool w
 - Create your spec files in the spec folder.
 - In the terminal, type `rspec` to run the spec file
 
+
+
 ## Note
 
--You also need to install the color gem by entering on the terminal `gem install colorize` 
-- I needed to exclude `sample.rb` and `sample2.rb` from the Rubocop test
+> To install the gem file, run
+
+~~~bash
+$ bundle install 
+~~~
+
+> But before that, make sure you have **bundler** installed on your system, else run
+
+~~~bash
+$ gem install bundler 
+~~~
+
+> or you simply install the the following directly using 
+
+~~~bash
+$ gem install rspec 
+~~~
+
+~~~bash
+$ gem install colorize 
+~~~
+
+~~~ I needed to exclude `sample.rb` and `sample2.rb` from the Rubocop test
 
 ## Rspec output
 ![screenshot rspec](./screenshots/screenshot2.png)
