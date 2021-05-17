@@ -1,6 +1,5 @@
 require_relative '../lib/error_checker'
 
-
 describe ErrorChecker do
   let(:error_check) { ErrorChecker.new('sample.rb') }
 
@@ -81,5 +80,3 @@ describe ErrorChecker do
     end
   end
 end
-
-
