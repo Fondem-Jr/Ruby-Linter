@@ -59,28 +59,21 @@ This project is tested with Rspec(domain-specific language (DSL)) testing tool w
 > To install the gem file, run
 
 ~~~bash
-$ bundle install 
-~~~
-
-> But before that, make sure you have **bundler** installed on your system, else run
-
-~~~bash
 $ gem install bundler 
 ~~~
 
-> or you simply install the the following directly using 
-
 ~~~bash
-$ gem install rspec 
+$ bundle install 
 ~~~
 
 ~~~bash
 $ gem install colorize 
 ~~~
 
-~~~ I needed to exclude `sample.rb` and `sample2.rb` from the Rubocop test
+~~~ I needed to exclude `sample.rb` and `sample2.rb` from the Rubocop test ~~~
 
 ## Rspec output
+
 ![screenshot rspec](./screenshots/Screenshot.png)
 
 ## Authors
