@@ -81,7 +81,7 @@ $ gem install colorize
 ~~~ I needed to exclude `sample.rb` and `sample2.rb` from the Rubocop test
 
 ## Rspec output
-![screenshot rspec](./screenshots/screenshot2.png)
+![screenshot rspec](./screenshots/Screenshot.png)
 
 ## Authors
 👤 **Fondem Junior**
