@@ -1,6 +1,6 @@
 #!/usr/bin/ruby
 
 def test
-   yield
+  yield
 end
-test{ puts "Hello world"}
+test { puts 'Hello world' }

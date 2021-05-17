@@ -34,6 +34,7 @@ class ErrorChecker
     end
     log_error("Lint/Syntax: Missing 'end'") if number_of_keywords > number_of_ends
     return unless number_of_keywords < number_of_ends
+
     log_error("Lint/Syntax: Unexpected 'end'")
   end
 
@@ -100,12 +101,8 @@ class ErrorChecker
 
       status = open_parenthesis.flatten.size <=> close_parenthesis.flatten.size
 
-      if status.eql?(1)
-        log_error("line:#{index + 1} Lint/Syntax: Unexpected/Missing token '#{args[2]}' #{args[4]}")
-      end
-      if status.eql?(-1)
-        log_error("line:#{index + 1} Lint/Syntax: Unexpected/Missing token '#{args[3]}' #{args[4]}")
-      end
+      log_error("line:#{index + 1} Lint/Syntax: Unexpected/Missing token '#{args[2]}' #{args[4]}") if status.eql?(1)
+      log_error("line:#{index + 1} Lint/Syntax: Unexpected/Missing token '#{args[3]}' #{args[4]}") if status.eql?(-1)
     end
   end
 
