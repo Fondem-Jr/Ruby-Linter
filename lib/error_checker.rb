@@ -26,15 +26,14 @@ class ErrorChecker
     number_of_keywords = 0
     number_of_ends = 0
     @error_check.file_lines.each_with_index do |str, _index|
-      if @keywords.include?(str.split(' ').first) ||
-         str.split(' ').include?('do')
+      if @keywords.include?(str.split.first) ||
+         str.split.include?('do')
         number_of_keywords += 1
       end
       number_of_ends += 1 if str.strip == 'end'
     end
     log_error_message("Lint/Syntax: Missing 'end'") if number_of_keywords > number_of_ends
     return unless number_of_keywords < number_of_ends
-
     log_error_message("Lint/Syntax: Unexpected 'end'")
   end
 
@@ -52,7 +51,7 @@ class ErrorChecker
     indented_value = 0
 
     @error_check.file_lines.each_with_index do |str, index|
-      strip_line = str.strip.split(' ')
+      strip_line = str.strip.split
       expected_value = current_value * 2
       reserved_words = %w[class def if elsif until module unless begin case]
 
@@ -81,7 +80,7 @@ class ErrorChecker
   end
 
   def indentation_error(str, index, expected_value, message)
-    strip_line = str.strip.split(' ')
+    strip_line = str.strip.split
     str_match = str.match(/^\s*\s*/)
     end_check = str_match[0].size.eql?(expected_value.zero? ? 0 : expected_value - 2)
 
@@ -115,25 +114,25 @@ class ErrorChecker
     tag_errors(/\{/, /\}/, '{', '}', 'Curly Bracket')
     tag_errors(/\[/, /\]/, '[', ']', 'Square Bracket')
   end
-  
+
   def end_empty_line_check(str, index)
-    return unless str.strip.split(' ').first.eql?('end')
+    return unless str.strip.split.first.eql?('end')
 
     return unless @error_check.file_lines[index - 1].strip.empty?
 
-    log_error_message("line:#{index} Extra empty line detected at the end of the block body")
+    log_error_message("line:#{index} Extra empty line at the end of the block body")
   end
 
   def empty_line_block_check(str, index)
     message = 'Extra empty line at the beginning of the block'
-    return unless str.strip.split(' ').include?('do')
+    return unless str.strip.split.include?('do')
 
     log_error_message("line:#{index + 2} #{message}") if @error_check.file_lines[index + 1].strip.empty?
   end
 
   def class_empty_line_check(str, index)
     msg = 'Extra empty line detected at class body beginning'
-    return unless str.strip.split(' ').first.eql?('class')
+    return unless str.strip.split.first.eql?('class')
 
     log_error_message("line:#{index + 2} #{msg}") if @error_check.file_lines[index + 1].strip.empty?
   end
@@ -142,11 +141,11 @@ class ErrorChecker
     message1 = 'Extra empty line at the beginning of the method'
     message2 = 'Extra empty line detected between method'
 
-    return unless str.strip.split(' ').first.eql?('def')
+    return unless str.strip.split.first.eql?('def')
 
     log_error_message("line:#{index + 2} #{message1}") if @error_check.file_lines[index + 1].strip.empty?
 
-    return unless @error_check.file_lines[index - 1].strip.split(' ').first.eql?('end')
+    return unless @error_check.file_lines[index - 1].strip.split.first.eql?('end')
 
     log_error_message("line:#{index + 1} #{message2}")
   end
