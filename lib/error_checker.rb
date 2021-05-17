@@ -18,7 +18,7 @@ class ErrorChecker
     'No offenses detected'.colorize(:green)
   end
 
-  def log_error_message(error_msg)
+  def log_error(error_msg)
     @errors << error_msg
   end
 
@@ -32,9 +32,9 @@ class ErrorChecker
       end
       number_of_ends += 1 if str.strip == 'end'
     end
-    log_error_message("Lint/Syntax: Missing 'end'") if number_of_keywords > number_of_ends
+    log_error("Lint/Syntax: Missing 'end'") if number_of_keywords > number_of_ends
     return unless number_of_keywords < number_of_ends
-    log_error_message("Lint/Syntax: Unexpected 'end'")
+    log_error("Lint/Syntax: Unexpected 'end'")
   end
 
   def trailing_spaces_check
@@ -85,9 +85,9 @@ class ErrorChecker
     end_check = str_match[0].size.eql?(expected_value.zero? ? 0 : expected_value - 2)
 
     if str.strip.eql?('end') || strip_line.first == 'elsif' || strip_line.first == 'when'
-      log_error_message("line:#{index + 1} #{message}") unless end_check
+      log_error("line:#{index + 1} #{message}") unless end_check
     elsif !str_match[0].size.eql?(expected_value)
-      log_error_message("line:#{index + 1} #{message}")
+      log_error("line:#{index + 1} #{message}")
     end
   end
 
@@ -101,10 +101,10 @@ class ErrorChecker
       status = open_parenthesis.flatten.size <=> close_parenthesis.flatten.size
 
       if status.eql?(1)
-        log_error_message("line:#{index + 1} Lint/Syntax: Unexpected/Missing token '#{args[2]}' #{args[4]}")
+        log_error("line:#{index + 1} Lint/Syntax: Unexpected/Missing token '#{args[2]}' #{args[4]}")
       end
       if status.eql?(-1)
-        log_error_message("line:#{index + 1} Lint/Syntax: Unexpected/Missing token '#{args[3]}' #{args[4]}")
+        log_error("line:#{index + 1} Lint/Syntax: Unexpected/Missing token '#{args[3]}' #{args[4]}")
       end
     end
   end
@@ -120,21 +120,21 @@ class ErrorChecker
 
     return unless @error_check.file_lines[index - 1].strip.empty?
 
-    log_error_message("line:#{index} Extra empty line at the end of the block body")
+    log_error("line:#{index} Extra empty line at the end of the block body")
   end
 
   def empty_line_block_check(str, index)
     message = 'Extra empty line at the beginning of the block'
     return unless str.strip.split.include?('do')
 
-    log_error_message("line:#{index + 2} #{message}") if @error_check.file_lines[index + 1].strip.empty?
+    log_error("line:#{index + 2} #{message}") if @error_check.file_lines[index + 1].strip.empty?
   end
 
   def class_empty_line_check(str, index)
     msg = 'Extra empty line detected at class body beginning'
     return unless str.strip.split.first.eql?('class')
 
-    log_error_message("line:#{index + 2} #{msg}") if @error_check.file_lines[index + 1].strip.empty?
+    log_error("line:#{index + 2} #{msg}") if @error_check.file_lines[index + 1].strip.empty?
   end
 
   def def_empty_line_check(str, index)
@@ -143,11 +143,11 @@ class ErrorChecker
 
     return unless str.strip.split.first.eql?('def')
 
-    log_error_message("line:#{index + 2} #{message1}") if @error_check.file_lines[index + 1].strip.empty?
+    log_error("line:#{index + 2} #{message1}") if @error_check.file_lines[index + 1].strip.empty?
 
     return unless @error_check.file_lines[index - 1].strip.split.first.eql?('end')
 
-    log_error_message("line:#{index + 1} #{message2}")
+    log_error("line:#{index + 1} #{message2}")
   end
 end
 # rubocop: enable Metrics/CyclomaticComplexity
