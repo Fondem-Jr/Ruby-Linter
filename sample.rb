@@ -1,17 +1,14 @@
 #!/usr/bin/env ruby
 class Person
+  
     def initialize(name, age)
-      @name = name 
+      @name = name
       @age = age
-    end
-    
-    public    # This method can be called from outside the class.
+    end.
     
     def about_me
       puts "I'm #{@name} and I'm #{@age} years old!"
     end
-    
-    private   # This method can't!
     
     def bank_account_number
       @account_number = 12345
