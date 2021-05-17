@@ -2,7 +2,6 @@
 
 require 'colorize'
 require 'strscan'
-require_relative 'errors'
 require_relative 'read_file'
 
 class ErrorChecker

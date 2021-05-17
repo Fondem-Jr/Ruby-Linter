@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 
 require_relative '../lib/error_checker'
-require_relative '../lib/errors'
 
 checks = ErrorChecker.new(ARGV.first)
 
