@@ -111,6 +111,8 @@ class ErrorChecker
     tag_errors(/\[/, /\]/, '[', ']', 'Square Bracket')
   end
 
+  private
+
   def end_empty_line_check(str, index)
     return unless str.strip.split.first.eql?('end')
 
