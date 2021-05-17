@@ -4,6 +4,9 @@ require_relative '../lib/error_checker'
 require_relative 'read_file'
 
 class ErrorTypes
+
+  private
+  
   def indentation_error(str, index, message, expected_value)
     strip_line = str.strip.split
     str_match = str.match(/^\s*\s*/)
