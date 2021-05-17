@@ -35,7 +35,8 @@ This linter is used to
 
  - $ git clone git@github.com:Fondem-Jr/Ruby-Linter.git
  - $ cd ./Ruby-Linter
- - $ ruby .\bin\main.rb .\sample.rb 
+ - $ ruby `.\bin\main.rb sample.rb` where sample.rb is the file i want to check for errors.
+ - To test another file, enter `.\bin\main.rb (filename)` where filename is replaced by the name of the file without including the parenthesis
 
 ## Running tests with Rspec
 
