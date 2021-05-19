@@ -4,6 +4,8 @@ AllCops:
     - "Guardfile"
     - "Rakefile"
     - "node_modules/**/*"
+    - "sample.rb"
+    - "sample2.rb"
 
   DisplayCopNames: true
 
